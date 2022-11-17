@@ -1,8 +1,9 @@
-package part01_xml;
+package part02_annotation;
 
 import java.util.Random;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /*
@@ -26,10 +27,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringTest {
 	public static void main(String[] args) {
-		String path = "part01_xml/aop.xml";
-		ApplicationContext context = new ClassPathXmlApplicationContext(path);
-		Service svc = null;
+//		String path = "part02_annotation/aop.xml";
+//		ApplicationContext context = new ClassPathXmlApplicationContext(path);
 		
+		ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+		
+		Service svc = null;
 		svc = (Service)context.getBean("svc");
 //		svc.prn1();
 //		svc.prn1(10);
