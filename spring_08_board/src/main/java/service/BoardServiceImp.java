@@ -6,7 +6,7 @@ import dao.BoardDAO;
 import dto.BoardDTO;
 import dto.PageDTO;
 
-public class BoardServiceImp implements BoardDAO {
+public class BoardServiceImp implements BoardService {
 	private BoardDAO dao;
 	
 	public BoardServiceImp() {
@@ -17,52 +17,53 @@ public class BoardServiceImp implements BoardDAO {
 	}
 
 	@Override
-	public int count() {
-		
-		return 0;
+	public int countProcess() {
+		return dao.count();
 	}
 
 	@Override
-	public List<BoardDTO> list(PageDTO pv) {
-		
-		return null;
+	public List<BoardDTO> listProcess(PageDTO pv) {
+		return dao.list(pv);
 	}
 
 	@Override
-	public void readCount(int num) {
+	public void insertProcess(BoardDTO dto) {
+		// 답변글이면
+		if(dto.getRef() != 0) {
+			dto.setRe_step(dto.getRe_step() + 1);
+			dto.setRe_level(dto.getRe_level() + 1);
+		}
+		dao.save(dto);
 	}
 
 	@Override
-	public BoardDTO content(int num) {
-		
-		return null;
+	public BoardDTO contentProcess(int num) {
+		dao.readCount(num);
+		return dao.content(num);
 	}
 
 	@Override
-	public void reStepCount(BoardDTO dto) {
+	public void reStepProcess(BoardDTO dto) {
 	}
 
 	@Override
-	public void save(BoardDTO dto) {
-	}
-
-	@Override
-	public BoardDTO updateNum(int num) {
-		
-		return null;
-	}
-
-	@Override
-	public void update(BoardDTO dto) {
-	}
-
-	@Override
-	public void delete(int num) {
-	}
-
-	@Override
-	public String getFile(int num) {
+	public BoardDTO updateSelectProcess(int num) {
 		
 		return null;
 	}
+
+	@Override
+	public void updateProcess(BoardDTO dto, String urlpath) {
+	}
+
+	@Override
+	public void deleteProcess(int num, String urlpath) {
+	}
+
+	@Override
+	public String fileselectprocess(int num) {
+		return dao.getFile(num);
+	}
+	
+	
 }
