@@ -4,13 +4,13 @@ $(document).ready(function () {
 
 function process() {
   $.ajax({
-    type: "GET",
-    dataType: "text",
-    url: "ajaxview/part01/sample.txt",
-    success: viewMessage,
+    type: 'GET',
+    dataType: 'text',
+    url: 'ajaxview/part01/sample.txt',
+    success: viewMessage
   });
 }
 
 function viewMessage(res) {
-  $("#wrap").html(res);
+  $('#wrap').html(res);
 }
